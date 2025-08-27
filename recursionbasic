@@ -1,0 +1,17 @@
+public class rec1{
+
+   public static void Innerrec1(int i,int n,int sum)
+    {
+        if(i==n){
+        sum=sum+i;
+        System.out.println(sum);
+        return;
+        }
+        sum=sum+i;
+        Innerrec1(i+1, n, sum);
+        
+    }
+public static void main(String[] args) {
+    Innerrec1(1, 5, 0);
+}
+}
