@@ -1,0 +1,51 @@
+class Task implements Runnable {
+    private String name;
+
+    public Task(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println(name + " is running: Step " + i);
+            try {
+                // Pause for 500ms to simulate work
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println(name + " was interrupted.");
+            }
+        }
+        System.out.println(name + " finished!");
+    }
+}
+
+public class RunnableExample {
+    public static void main(String[] args) {
+        // Create the tasks
+        Task task1 = new Task("Thread A");
+        Task task2 = new Task("Thread B");
+
+        // Pass tasks to Thread objects
+        Thread t1 = new Thread(task1);
+        Thread t2 = new Thread(task2);
+
+        // START the threads (Do not call run() directly!)
+        t1.start();
+        t2.start();
+    }
+}
+
+
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread is running inside: " + Thread.currentThread().getName());
+    }
+}
+
+public class ThreadExample {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        t1.start();
+    }
+}
